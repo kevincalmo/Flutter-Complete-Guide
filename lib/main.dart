@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-main() {
-  runApp(MyApp());
-}
+// main() {
+//   runApp(MyApp());
+// }
+
+main() => runApp(MyApp());
 
 // Création du design de l'application.
 // En extends StatelessWidget, impossible d'y ajouter un état
