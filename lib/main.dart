@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/quiz.dart';
+import 'package:flutter_complete_guide/result.dart';
 import './answer.dart';
 import './question.dart';
 
@@ -21,44 +23,47 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  void answerQuestion() {
-    setState(() {
-      _questionIndex++;
-    });
-    print(_questionIndex);
+  final questions = [
+    {
+      'questionText': 'What\'s your favorite color ?',
+      'answers': ['Black', 'Red', 'Green', 'White']
+    },
+    {
+      'questionText': 'What\'s your favorite animal ?',
+      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion']
+    },
+    {
+      'questionText': 'What\'s your favorite meal ?',
+      'answers': ['Chicken', 'Fish', 'Egg', 'Melon']
+    },
+  ];
+
+  void _answerQuestion() {
+    if (_questionIndex < questions.length) {
+      setState(() {
+        _questionIndex++;
+      });
+      print(_questionIndex);
+    }
   }
 
   /**/
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'What\'s your favorite color ?',
-      'What\'s your favorite animal ?'
-    ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('My First App'),
         ),
-        body: Column(
-          children: [
-            Question(
-              questionText: questions[_questionIndex],
-            ),
-            Answer(
-              answerText: 'Réponse 1',
-              answerFunction: answerQuestion,
-            ),
-            ElevatedButton(
-              child: Text('Réponse 2'),
-              onPressed: answerQuestion,
-            ),
-            ElevatedButton(
-              child: Text('Réponse 3'),
-              onPressed: answerQuestion,
-            ),
-          ],
-        ),
+        body: _questionIndex < questions.length
+            ? Quiz(
+                questionText: questions[_questionIndex]['questionText'],
+                answers: questions[_questionIndex]['answers'],
+                questionAnswerFunction: _answerQuestion,
+              )
+            : Result(
+                textOutput: 'You did it !',
+              ),
       ),
     );
   }
