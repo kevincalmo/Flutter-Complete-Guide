@@ -13,7 +13,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Text('Hello!'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My First App'),
+        ),
+        body: Column(
+          children: [
+            Text('The question'),
+            ElevatedButton(
+              child: Text('Réponse 1'),
+              onPressed: () => print('Réponse 1'),
+            ),
+            ElevatedButton(
+              child: Text('Réponse 2'),
+              onPressed: () => print('Réponse 2'),
+            ),
+            ElevatedButton(
+              child: Text('Réponse 3'),
+              onPressed: () => print('Réponse 3'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
