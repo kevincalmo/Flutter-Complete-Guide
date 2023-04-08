@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/question.dart';
+import './answer.dart';
+import './question.dart';
 
 // main() {
 //   runApp(MyApp());
@@ -44,9 +45,9 @@ class _MyAppState extends State<MyApp> {
             Question(
               questionText: questions[_questionIndex],
             ),
-            ElevatedButton(
-              child: Text('Réponse 1'),
-              onPressed: answerQuestion,
+            Answer(
+              answerText: 'Réponse 1',
+              answerFunction: answerQuestion,
             ),
             ElevatedButton(
               child: Text('Réponse 2'),
